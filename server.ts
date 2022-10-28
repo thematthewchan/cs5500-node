@@ -4,9 +4,15 @@
 import express, {Request, Response} from 'express';
 import mongoose from "mongoose";
 import UserDao from "./daos/UserDao";
+import LikeDao from './daos/LikeDao';
+import LikeController from './controllers/LikeController';
 import UserController from "./controllers/UserController";
 import TuitController from "./controllers/TuitController";
 import TuitDao from "./daos/TuitDao";
+import BookmarkDao from './daos/BookmarkDao';
+import BookmarkController from './controllers/BookmarkController';
+import FollowDao from './daos/FollowDao';
+import FollowController from './controllers/FollowController';
 const cors = require('cors')
 const app = express();
 app.use(cors());
@@ -32,6 +38,16 @@ const userController = new UserController(app, userDao);
 // .getInstance(app, tuitDao);
 const tuitDao = new TuitDao();
 const tuitController = new TuitController(app, tuitDao);
+
+const likeDao = new LikeDao();
+const likeController = new LikeController(app, likeDao);
+
+const bookmarkDao = new BookmarkDao();
+const bookmarkController = new BookmarkController(app, bookmarkDao)
+
+const followDao = new FollowDao();
+const followController = new FollowController(app, followDao)
+
 
 const dbCallback = (movies: any) => {
   console.log('invoked when db returns data')
