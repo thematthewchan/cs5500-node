@@ -1,4 +1,4 @@
-import {Request, Response} from "express";
+import { Request, Response } from "express";
 
 export default interface FollowControllerI {
     userFollowsUser(req: Request, res: Response): void;

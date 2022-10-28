@@ -1,7 +1,7 @@
 /**
  * @file Implements an Express Node HTTP server.
  */
-import express, {Request, Response} from 'express';
+import express, { Request, Response } from 'express';
 import mongoose from "mongoose";
 import UserDao from "./daos/UserDao";
 import LikeDao from './daos/LikeDao';
@@ -13,6 +13,8 @@ import BookmarkDao from './daos/BookmarkDao';
 import BookmarkController from './controllers/BookmarkController';
 import FollowDao from './daos/FollowDao';
 import FollowController from './controllers/FollowController';
+import MessageDao from './daos/MessageDao';
+import MessageController from './controllers/MessageController';
 const cors = require('cors')
 const app = express();
 app.use(cors());
@@ -48,6 +50,8 @@ const bookmarkController = new BookmarkController(app, bookmarkDao)
 const followDao = new FollowDao();
 const followController = new FollowController(app, followDao)
 
+const messageDao = new MessageDao();
+const messageController = new MessageController(app, messageDao)
 
 const dbCallback = (movies: any) => {
   console.log('invoked when db returns data')
@@ -55,10 +59,10 @@ const dbCallback = (movies: any) => {
 }
 
 app.get('/', (req: Request, res: Response) =>
-    res.send('Welcome to Foundation of Software Engineering!!!!'));
+  res.send('Welcome to Foundation of Software Engineering!!!!'));
 
 app.get('/hello', (req: Request, res: Response) =>
-    res.send('Welcome to Foundation of Software Engineering!'));
+  res.send('Welcome to Foundation of Software Engineering!'));
 
 /**
  * Start a server listening at port 4000 locally

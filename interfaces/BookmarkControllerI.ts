@@ -1,4 +1,4 @@
-import {Request, Response} from "express";
+import { Request, Response } from "express";
 
 export default interface BookmarkControllerI {
     userBookmarksTuit(req: Request, res: Response): void;

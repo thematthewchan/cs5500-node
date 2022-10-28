@@ -9,6 +9,6 @@ const tuit2UserSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'UserModel'
   },
-}, {collection: 'tuit2user'});
+}, { collection: 'tuit2user' });
 
 export default tuit2UserSchema

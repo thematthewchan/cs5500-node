@@ -1,105 +1,111 @@
-[{
-  "_id": {
-    "$oid": "63518276a59d71d9716cbc81"
+[
+  {
+    "_id": {
+      "$oid": "63518276a59d71d9716cbc81"
+    },
+    "username": "alice",
+    "password": "alice123",
+    "firstName": "Alice",
+    "lastName": "Wonderland",
+    "email": "alice@wonderland.com",
+    "accountType": "PERSONAL",
+    "maritalStatus": "SINGLE",
+    "location": {
+      "latitude": 0,
+      "longitude": 0
+    },
+    "joined": {
+      "$date": {
+        "$numberLong": "1666286198792"
+      }
+    },
+    "__v": 0
   },
-  "username": "alice",
-  "password": "alice123",
-  "firstName": "Alice",
-  "lastName": "Wonderland",
-  "email": "alice@wonderland.com",
-  "accountType": "PERSONAL",
-  "maritalStatus": "SINGLE",
-  "location": {
-    "latitude": 0,
-    "longitude": 0
+  {
+    "_id": {
+      "$oid": "6351865fc80a9b4818c4ac9a"
+    },
+    "username": "bob321",
+    "password": "bob",
+    "firstName": "Bob",
+    "lastName": "Hope",
+    "email": "bob@hope.com",
+    "accountType": "PERSONAL",
+    "maritalStatus": "SINGLE",
+    "location": {
+      "latitude": 0,
+      "longitude": 0
+    },
+    "joined": {
+      "$date": {
+        "$numberLong": "1666287199188"
+      }
+    },
+    "__v": 0
   },
-  "joined": {
-    "$date": {
-      "$numberLong": "1666286198792"
-    }
+  {
+    "_id": {
+      "$oid": "63518672c80a9b4818c4ac9c"
+    },
+    "username": "charlie432",
+    "password": "charlie",
+    "firstName": "Charlie",
+    "lastName": "Brown",
+    "email": "charlie@peanuts.com",
+    "accountType": "PERSONAL",
+    "maritalStatus": "SINGLE",
+    "location": {
+      "latitude": 0,
+      "longitude": 0
+    },
+    "joined": {
+      "$date": {
+        "$numberLong": "1666287218615"
+      }
+    },
+    "__v": 0
   },
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "6351865fc80a9b4818c4ac9a"
+  {
+    "_id": {
+      "$oid": "6351868ac80a9b4818c4ac9e"
+    },
+    "username": "nasa321",
+    "password": "nasa",
+    "firstName": "NASA",
+    "lastName": "Gov",
+    "email": "space@nasa.gov",
+    "accountType": "PERSONAL",
+    "maritalStatus": "SINGLE",
+    "location": {
+      "latitude": 0,
+      "longitude": 0
+    },
+    "joined": {
+      "$date": {
+        "$numberLong": "1666287242773"
+      }
+    },
+    "__v": 0
   },
-  "username": "bob321",
-  "password": "bob",
-  "firstName": "Bob",
-  "lastName": "Hope",
-  "email": "bob@hope.com",
-  "accountType": "PERSONAL",
-  "maritalStatus": "SINGLE",
-  "location": {
-    "latitude": 0,
-    "longitude": 0
-  },
-  "joined": {
-    "$date": {
-      "$numberLong": "1666287199188"
-    }
-  },
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63518672c80a9b4818c4ac9c"
-  },
-  "username": "charlie432",
-  "password": "charlie",
-  "firstName": "Charlie",
-  "lastName": "Brown",
-  "email": "charlie@peanuts.com",
-  "accountType": "PERSONAL",
-  "maritalStatus": "SINGLE",
-  "location": {
-    "latitude": 0,
-    "longitude": 0
-  },
-  "joined": {
-    "$date": {
-      "$numberLong": "1666287218615"
-    }
-  },
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "6351868ac80a9b4818c4ac9e"
-  },
-  "username": "nasa321",
-  "password": "nasa",
-  "firstName": "NASA",
-  "lastName": "Gov",
-  "email": "space@nasa.gov",
-  "accountType": "PERSONAL",
-  "maritalStatus": "SINGLE",
-  "location": {
-    "latitude": 0,
-    "longitude": 0
-  },
-  "joined": {
-    "$date": {
-      "$numberLong": "1666287242773"
-    }
-  },
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "635186abc80a9b4818c4aca0"
-  },
-  "username": "spacex420",
-  "password": "spacex",
-  "firstName": "SpaceX",
-  "email": "elon@spacex.com",
-  "accountType": "PERSONAL",
-  "maritalStatus": "SINGLE",
-  "location": {
-    "latitude": 0,
-    "longitude": 0
-  },
-  "joined": {
-    "$date": {
-      "$numberLong": "1666287275614"
-    }
-  },
-  "__v": 0
-}]
+  {
+    "_id": {
+      "$oid": "635186abc80a9b4818c4aca0"
+    },
+    "username": "spacex420",
+    "password": "spacex",
+    "firstName": "SpaceX",
+    "email": "elon@spacex.com",
+    "accountType": "PERSONAL",
+    "maritalStatus": "SINGLE",
+    "location": {
+      "latitude": 0,
+      "longitude": 0
+    },
+    "joined": {
+      "$date": {
+        "$numberLong": "1666287275614"
+      }
+    },
+    "__v": 0
+  }
+]
