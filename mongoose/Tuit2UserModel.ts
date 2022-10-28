@@ -1,3 +1,7 @@
+/**
+ * @file Implements mongoose model to CRUD
+ * documents in the Tuit2User collection
+ */
 import mongoose from "mongoose";
 import Tuit2UserSchema from "./Tuit2UserSchema";
 

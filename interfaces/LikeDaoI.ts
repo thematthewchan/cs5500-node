@@ -1,3 +1,6 @@
+/**
+ * @file Declares API for Like related data access object methods
+ */
 import Like from "../models/Like";
 
 export default interface LikeDaoI {

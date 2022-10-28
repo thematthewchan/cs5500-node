@@ -18,7 +18,7 @@ import BookmarkControllerI from "../interfaces/BookmarkControllerI";
  *     <li>DELETE /users/:uid/bookmarks/:tid to record that a user
  *     no londer bookmarked a tuit</li>
  * </ul>
- * @property {BookmarkDao} likeDao Singleton DAO implementing bookmarks CRUD operations
+ * @property {BookmarkDao} bookmarkDao Singleton DAO implementing bookmarks CRUD operations
  * @property {Express} app Express app
  * RESTful Web service API
  */
@@ -47,7 +47,7 @@ export default class BookmarkController implements BookmarkControllerI {
             .then(likes => res.json(likes));
 
     /**
-     * Retrieves all users that bookmarked a tuit frmo the database
+     * Retrieves all users that bookmarked a tuit from the database
      * @param req represents request from client, including path parameter tid
      *  representing the bookmarked tuit
      * @param res Represents response to client, including the body formatted 

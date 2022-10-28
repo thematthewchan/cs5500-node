@@ -1,3 +1,6 @@
+/**
+ * @file Declares API for User related data access object methods
+ */
 import { Request, Response } from "express";
 
 export default interface UserControllerI {

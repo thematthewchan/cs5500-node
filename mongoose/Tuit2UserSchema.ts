@@ -1,3 +1,7 @@
+/**
+ * @file Implements mongoose schema to CRUD
+ * documents in the Tuit2User collection
+ */
 import mongoose from "mongoose";
 
 const tuit2UserSchema = new mongoose.Schema({
