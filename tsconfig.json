@@ -6,5 +6,16 @@
     "outDir": "./build",
     "esModuleInterop": true,
     "strict": true
-  }
+  },
+  "moduleResolution": "node",
+  "files": [
+    "server.ts",
+    "./node_modules/@types/mocha/index.d.ts",
+  ],
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
