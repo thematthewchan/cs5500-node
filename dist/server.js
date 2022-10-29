@@ -59,6 +59,6 @@ app.get('/hello', (req, res) => res.send('Welcome to Foundation of Software Engi
  * Start a server listening at port 4000 locally
  * but use environment variable PORT on Heroku if available.
  */
-const PORT = 3000;
+const PORT = 4000;
 app.listen(process.env.PORT || PORT);
 //# sourceMappingURL=server.js.map
