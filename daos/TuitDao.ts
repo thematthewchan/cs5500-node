@@ -51,7 +51,7 @@ export default class TuitDao implements TuitDaoI {
    * @param {Tuit} tuit Instance to be inserted into the database
    * @returns Promise To be notified when tuit is inserted into the database
    */
-  async createTuit(tuit: Tuit): Promise<Tuit> {
+  async createTuit(tuit: Tuit): Promise<any> {
     return await TuitModel.create(tuit);
   }
 
@@ -71,6 +71,6 @@ export default class TuitDao implements TuitDaoI {
    * @returns Promise To be notified when tuit is updated in the database
    */
   async updateTuit(tid: string, tuit: Tuit): Promise<any> {
-    return await TuitModel.updateOne({ _id: tid }, { $set: tuit });
+    return await TuitModel.updateOne({ _id: tid, $set: tuit });
   }
 }

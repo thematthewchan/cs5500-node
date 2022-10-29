@@ -83,7 +83,7 @@ class TuitDao {
      */
     updateTuit(tid, tuit) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield TuitModel_1.default.updateOne({ _id: tid }, { $set: tuit });
+            return yield TuitModel_1.default.updateOne({ _id: tid, $set: tuit });
         });
     }
 }

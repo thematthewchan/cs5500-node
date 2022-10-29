@@ -25,7 +25,7 @@ export default class FollowDao implements FollowDaoI {
      * @param {string} uidFollowing Primary key of user following
      * @returns Promise To be notified when follow is inserted into the database
      */
-    async userFollowsUser(uidFollowed: string, uidFollowing: string): Promise<Follow> {
+    async userFollowsUser(uidFollowed: string, uidFollowing: string): Promise<any> {
         return await FollowModel.create({ userFollowed: uidFollowed, userFollowing: uidFollowing })
     }
 

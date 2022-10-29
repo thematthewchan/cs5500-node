@@ -34,7 +34,7 @@ export default class UserDao implements UserDaoI {
    * @param {User} user Instance to be inserted into the database
    * @returns Promise To be notified when user is inserted into the database
    */
-  async createUser(user: User): Promise<User> {
+  async createUser(user: User): Promise<any> {
     return await UserModel.create(user);
   }
 
@@ -54,6 +54,6 @@ export default class UserDao implements UserDaoI {
    * @returns Promise To be notified when user is updated in the database
    */
   async updateUser(uid: string, user: User): Promise<any> {
-    return await UserModel.updateOne({ _id: uid }, { $set: user });
+    return await UserModel.updateOne({ _id: uid, $set: user });
   }
 }
