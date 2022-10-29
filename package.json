@@ -1,7 +1,6 @@
 {
   "name": "software-engineering-node",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node build/server.js",
@@ -32,6 +31,15 @@
   },
   "engines": {
     "node": "14.15.0",
-    "npm": ">=8.0.0 <9.0.0"
-  }
+    "npm": "8.19.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thematthewchan/cs5500-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thematthewchan/cs5500-node/issues"
+  },
+  "homepage": "https://github.com/thematthewchan/cs5500-node#readme",
+  "description": ""
 }
