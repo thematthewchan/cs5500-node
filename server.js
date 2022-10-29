@@ -15,9 +15,9 @@ import FollowDao from './daos/FollowDao';
 import FollowController from './controllers/FollowController';
 import MessageDao from './daos/MessageDao';
 import MessageController from './controllers/MessageController';
-const cors = require('cors');
+// const cors = require('cors');
 const app = express();
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 const options = {
     useNewUrlParser: true,
