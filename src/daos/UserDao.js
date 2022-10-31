@@ -61,7 +61,7 @@ export default class UserDao {
      */
     updateUser(uid, user) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield UserModel.updateOne({ _id: uid }, { $set: user });
+            return yield UserModel.updateOne({ _id: uid, $set: user });
         });
     }
 }

@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,16 +7,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const TuitModel_1 = __importDefault(require("../mongoose/TuitModel"));
+import TuitModel from "../mongoose/TuitModel";
 /**
  * @class TuitDao Implements Data Access Object managing data storage
  * of Tuits
  */
-class TuitDao {
+export default class TuitDao {
     /**
      * Uses TuitModel to retrieve all tuit documents from tuits collection
      * @returns Promise To be notified when the tuits are retrieved from
@@ -25,7 +20,7 @@ class TuitDao {
      */
     findAllTuits() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield TuitModel_1.default.find();
+            return yield TuitModel.find();
         });
     }
     /**
@@ -42,7 +37,7 @@ class TuitDao {
             //     _id: 0}
             // )
             // .populate('tuits')
-            return yield TuitModel_1.default.find({ postedBy: uid });
+            return yield TuitModel.find({ postedBy: uid });
         });
     }
     /**
@@ -52,7 +47,7 @@ class TuitDao {
      */
     findTuitById(tid) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield TuitModel_1.default.findById(tid);
+            return yield TuitModel.findById(tid);
         });
     }
     /**
@@ -62,7 +57,7 @@ class TuitDao {
      */
     createTuit(tuit) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield TuitModel_1.default.create(tuit);
+            return yield TuitModel.create(tuit);
         });
     }
     /**
@@ -72,7 +67,7 @@ class TuitDao {
      */
     deleteTuit(tid) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield TuitModel_1.default.deleteOne({ _id: tid });
+            return yield TuitModel.deleteOne({ _id: tid });
         });
     }
     /**
@@ -83,9 +78,7 @@ class TuitDao {
      */
     updateTuit(tid, tuit) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield TuitModel_1.default.updateOne({ _id: tid, $set: tuit });
+            return yield TuitModel.updateOne({ _id: tid, $set: tuit });
         });
     }
 }
-exports.default = TuitDao;
-//# sourceMappingURL=TuitDao.js.map

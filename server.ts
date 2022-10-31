@@ -3,18 +3,18 @@
  */
 import express, { Request, Response } from 'express';
 import mongoose from "mongoose";
-import UserDao from "./daos/UserDao";
-import LikeDao from './daos/LikeDao';
-import LikeController from './controllers/LikeController';
-import UserController from "./controllers/UserController";
-import TuitController from "./controllers/TuitController";
-import TuitDao from "./daos/TuitDao";
-import BookmarkDao from './daos/BookmarkDao';
-import BookmarkController from './controllers/BookmarkController';
-import FollowDao from './daos/FollowDao';
-import FollowController from './controllers/FollowController';
-import MessageDao from './daos/MessageDao';
-import MessageController from './controllers/MessageController';
+import UserDao from './src/daos/UserDao';
+import LikeDao from './src/daos/LikeDao';
+import LikeController from './src/controllers/LikeController';
+import UserController from './src/controllers/UserController';
+import TuitController from './src/controllers/TuitController';
+import TuitDao from "./src/daos/TuitDao";
+import BookmarkDao from './src/daos/BookmarkDao';
+import BookmarkController from './src/controllers/BookmarkController';
+import FollowDao from './src/daos/FollowDao';
+import FollowController from './src/controllers/FollowController';
+import MessageDao from './src/daos/MessageDao';
+import MessageController from './src/controllers/MessageController';
 // const cors = require('cors')
 const app = express();
 // app.use(cors());
