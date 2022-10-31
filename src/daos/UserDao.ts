@@ -53,7 +53,7 @@ export default class UserDao implements UserDaoI {
    * @param {User} user User object containing properties and their new values
    * @returns Promise To be notified when user is updated in the database
    */
-  async updateUser(uid: string, user: User): Promise<any> {
+  async updateUser(uid: string, user: any): Promise<any> {
     return await UserModel.updateOne({ _id: uid }, { $set: user });
   }
 }
