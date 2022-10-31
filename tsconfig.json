@@ -1,22 +1,10 @@
 {
-  "moduleResolution": "node",
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
     "rootDir": "./",
-    "outDir": "build",
+    "outDir": "./build",
     "esModuleInterop": true,
-    "strict": true,
-    "sourceMap": true,
-  },
-  "files": [
-    "server.ts",
-    "./node_modules/@types/mocha/index.d.ts",
-  ],
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
+    "strict": true
+  }
 }

@@ -15,9 +15,9 @@ import FollowDao from './src/daos/FollowDao';
 import FollowController from './src/controllers/FollowController';
 import MessageDao from './src/daos/MessageDao';
 import MessageController from './src/controllers/MessageController';
-// const cors = require('cors')
+const cors = require('cors')
 const app = express();
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 
 const options = {
