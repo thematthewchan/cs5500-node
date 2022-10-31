@@ -31,7 +31,7 @@ export default class MessageController implements MessageControllerI {
         this.app.get("/users/:uid/messages", this.findAllReceivedMessages);
         this.app.get("/users/:uid/messages/sent", this.findAllSentMessages);
         this.app.post("/users/:uidFrom/messages/:uidTo", this.sendMessage);
-        this.app.delete("/users/:uidFrom/messages/:uidTo", this.deleteMessage);
+        this.app.delete("/messages/:mid", this.deleteMessage);
     }
 
     /**
@@ -75,6 +75,6 @@ export default class MessageController implements MessageControllerI {
      * status on whether deleting the message was successful or not
      */
     deleteMessage = (req: Request, res: Response) =>
-        this.messageDao.deleteMessage(req.params.uidFrom, req.params.uidTo, req.body.message)
+        this.messageDao.deleteMessage(req.params.mid)
             .then(status => res.json(status));
 }

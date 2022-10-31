@@ -50,12 +50,10 @@ export default class MessageDao implements MessageDaoI {
 
     /**
      * Removes message instance into the database
-     * @param {string} uidSender Primary key of user deleting message
-     * @param {string} uidReceiver Primary key of user receiving deleted message
-     * @param {string} message Message being deleted
+     * @param {string} mid Primary key of message
      * @returns Promise To be notified when message is removed from the database
      */
-    async deleteMessage(uidSender: string, uidReceiver: string, message: string): Promise<any> {
-        return await MessageModel.deleteOne({ from: uidSender, to: uidReceiver, message: message })
+    async deleteMessage(mid: string): Promise<any> {
+        return await MessageModel.deleteOne({ _id: mid })
     }
 }

@@ -36,9 +36,6 @@ mongoose.connect('mongodb+srv://user:user@atlascluster.yhpg964.mongodb.net/?retr
 const userDao = new UserDao();
 const userController = new UserController(app, userDao);
 
-// const tuitDao = TuitDao.getInstance();
-// const tuitController = TuitController
-// .getInstance(app, tuitDao);
 const tuitDao = new TuitDao();
 const tuitController = new TuitController(app, tuitDao);
 
@@ -60,7 +57,7 @@ const dbCallback = (movies: any) => {
 }
 
 app.get('/', (req: Request, res: Response) =>
-  res.send('Welcome to Foundation of Software Engineering!!!!'));
+  res.send('Tuiter Homepage'));
 
 app.get('/hello', (req: Request, res: Response) =>
   res.send('Welcome to Foundation of Software Engineering!'));
