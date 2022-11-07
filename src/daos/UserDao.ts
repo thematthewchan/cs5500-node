@@ -48,6 +48,15 @@ export default class UserDao implements UserDaoI {
   }
 
   /**
+   * Removes user from the database by username.
+   * @param {string} username Username of user to be removed
+   * @returns Promise To be notified when user is removed from the database
+   */
+  async deleteUsersByUsername(username: string): Promise<any> {
+    return await UserModel.deleteOne({ username: username });
+  }
+
+  /**
    * Updates user with new values in database
    * @param {string} uid Primary key of user to be modified
    * @param {User} user User object containing properties and their new values

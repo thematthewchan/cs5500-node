@@ -2,6 +2,8 @@
  * @file Controller RESTful Web service API for users resource
  */
 import { Request, Response, Express } from "express";
+import { ParamsDictionary } from "express-serve-static-core";
+import { ParsedQs } from "qs";
 import UserDao from "../daos/UserDao";
 import UserControllerI from "../interfaces/UserControllerI";
 
@@ -30,6 +32,7 @@ export default class UserController implements UserControllerI {
         this.app.get('/users/:uid', this.findUserById);
         this.app.post('/users', this.createUser);
         this.app.delete('/users/:uid', this.deleteUser);
+        this.app.get('/users/username/:username/delete', this.deleteUsersByUsername);
         this.app.put('/users/:uid', this.updateUser);
     }
 
@@ -76,6 +79,17 @@ export default class UserController implements UserControllerI {
      */
     deleteUser = (req: Request, res: Response) =>
         this.userDao.deleteUser(req.params.uid)
+            .then(status => res.json(status));
+
+    /**
+     * Removes a user instance from the database by username
+     * @param {Request} req Represents request from client, including path
+     * parameter uid identifying the primary key of the user to be removed
+     * @param {Response} res Represents response to client, including status
+     * on whether deleting a user was successful or not
+     */
+    deleteUsersByUsername = (req: Request, res: Response) =>
+        this.userDao.deleteUsersByUsername(req.params.username)
             .then(status => res.json(status));
 
     /**
