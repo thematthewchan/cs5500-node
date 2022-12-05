@@ -18,11 +18,16 @@ import MessageController from './src/controllers/MessageController';
 const cors = require('cors')
 const session = require("express-session")
 const app = express();
-app.use(cors());
+app.use(cors({
+  credentials: true,
+  origin: true,
+  optionsSuccessStatus: 200,
+}));
 app.use(express.json());
 
 let sess = {
-  secret: process.env.SECRET,
+  // secret: process.env.SECRET,
+  secret: "REDCAT",
   cookie: {
     secure: false
   }
@@ -53,7 +58,7 @@ const tuitDao = new TuitDao();
 const tuitController = new TuitController(app, tuitDao);
 
 const likeDao = new LikeDao();
-const likeController = new LikeController(app, likeDao);
+const likeController = new LikeController(app, likeDao, tuitDao);
 
 const bookmarkDao = new BookmarkDao();
 const bookmarkController = new BookmarkController(app, bookmarkDao)
@@ -75,9 +80,15 @@ app.get('/', (req: Request, res: Response) =>
 app.get('/hello', (req: Request, res: Response) =>
   res.send('Welcome to Foundation of Software Engineering!'));
 
+const PORT: any = process.env.PORT || 4000;
+
+if (process.env.ENV === "PRODUCTION") {
+  app.set("trust proxy", 1); // trust first proxy
+  sess.cookie.secure = true; // serve secure cookies
+}
+
 /**
  * Start a server listening at port 4000 locally
  * but use environment variable PORT on Heroku if available.
  */
-const PORT = 4000;
 app.listen(process.env.PORT || PORT);
