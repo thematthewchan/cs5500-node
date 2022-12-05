@@ -56,6 +56,15 @@ export default class TuitDao implements TuitDaoI {
   }
 
   /**
+   * Inserts tuit instance into the database
+   * @param {Tuit} tuit Instance to be inserted into the database
+   * @returns Promise To be notified when tuit is inserted into the database
+   */
+  async createTuitByUser(uid: string, tuit: Tuit): Promise<any> {
+    return await TuitModel.create({ ...tuit, postedBy: uid });
+  }
+
+  /**
    * Removes tuit from the database.
    * @param {string} tid Primary key of tuit to be removed
    * @returns Promise To be notified when tuit is removed from the database
@@ -72,5 +81,18 @@ export default class TuitDao implements TuitDaoI {
    */
   async updateTuit(tid: string, tuit: any): Promise<any> {
     return await TuitModel.updateOne({ _id: tid, $set: tuit });
+  }
+
+  /**
+   * Updates tuit with new values in database
+   * @param {string} tid Primary key of tuit to be modified
+   * @param {any} newStats Tuit object containing properties and their new values
+   * @returns Promise To be notified when tuit is updated in the database
+   */
+  async updateLikes(tid: string, newStats: any): Promise<any> {
+    return await TuitModel.updateOne(
+      { _id: tid },
+      { $set: { stats: newStats } });
+
   }
 }

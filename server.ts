@@ -16,9 +16,22 @@ import FollowController from './src/controllers/FollowController';
 import MessageDao from './src/daos/MessageDao';
 import MessageController from './src/controllers/MessageController';
 const cors = require('cors')
+const session = require("express-session")
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+let sess = {
+  secret: process.env.SECRET,
+  cookie: {
+    secure: false
+  }
+}
+
+if (process.env.ENV === 'PRODUCTION') {
+  app.set('trust proxy', 1) // trust first proxy
+  sess.cookie.secure = true // serve secure cookies
+}
 
 const options = {
   useNewUrlParser: true,

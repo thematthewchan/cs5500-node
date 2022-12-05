@@ -30,6 +30,7 @@ export default class UserController implements UserControllerI {
         this.userDao = userDao;
         this.app.get('/users', this.findAllUsers);
         this.app.get('/users/:uid', this.findUserById);
+        this.app.get('/users/username/:username', this.findUserByUsername);
         this.app.post('/users', this.createUser);
         this.app.delete('/users/:uid', this.deleteUser);
         this.app.get('/users/username/:username/delete', this.deleteUsersByUsername);
@@ -55,6 +56,17 @@ export default class UserController implements UserControllerI {
      */
     findUserById = (req: Request, res: Response) =>
         this.userDao.findUserById(req.params.uid)
+            .then(user => res.json(user));
+
+    /**
+     * Retrieves the user by their username
+     * @param {Request} req Represents request from client, including path
+     * parameter uid identifying the primary key of the user to be retrieved
+     * @param {Response} res Represents response to client, including the
+     * body formatted as JSON containing the user that matches the user ID
+     */
+    findUserByUsername = (req: Request, res: Response) =>
+        this.userDao.findUserByUsername(req.params.username)
             .then(user => res.json(user));
 
     /**
