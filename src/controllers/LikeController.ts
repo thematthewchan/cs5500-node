@@ -3,6 +3,7 @@
  */
 import { Request, Response, Express } from "express";
 import LikeDao from "../daos/LikeDao";
+import TuitDao from "../daos/TuitDao";
 import LikeControllerI from "../interfaces/LikeControllerI";
 
 /**
@@ -25,13 +26,21 @@ import LikeControllerI from "../interfaces/LikeControllerI";
 export default class LikeController implements LikeControllerI {
     app: Express;
     likeDao: LikeDao;
-    constructor(app: Express, likeDao: LikeDao) {
+    tuitDao: TuitDao;
+    constructor(app: Express, likeDao: LikeDao, tuitDao: TuitDao) {
         this.app = app;
         this.likeDao = likeDao;
+        this.tuitDao = tuitDao;
         this.app.get("/users/:uid/likes", this.findAllTuitsLikedByUser);
         this.app.get("/tuits/:tid/likes", this.findAllUsersThatLikedTuit);
+        this.app.get(
+            "/users/:uid/likes/:tid",
+            this.findUserLikesTuit
+        );
         this.app.post("/users/:uid/likes/:tid", this.userLikesTuit);
         this.app.delete("/users/:uid/likes/:tid", this.userUnlikesTuit);
+        this.app.put("/users/:uid/likes/:tid",
+            this.userTogglesTuitLikes);
     }
 
     /**
@@ -78,4 +87,62 @@ export default class LikeController implements LikeControllerI {
     userUnlikesTuit = (req: Request, res: Response) =>
         this.likeDao.userUnlikesTuit(req.params.uid, req.params.tid)
             .then(status => res.json(status));
+
+    /**
+     * @param {Request} req Represents request from client, including the
+     * path parameters uid and tid representing the user that is unliking
+     * the tuit and the tuit being unliked
+     * @param {Response} res Represents response to client, including status
+     * on whether deleting the like was successful or not
+     */
+    countHowManyLikedTuit = (req: Request, res: Response) =>
+        this.likeDao
+            .countHowManyLikedTuit(req.params.tid)
+            .then((likes) => res.send(likes));
+
+    /**
+     * @param {Request} req Represents request from client, including the
+     * path parameters uid and tid representing the user that is unliking
+     * the tuit and the tuit being unliked
+     * @param {Response} res Represents response to client, including status
+     * on whether deleting the like was successful or not
+     */
+    findUserLikesTuit = (req: Request, res: Response) =>
+        this.likeDao
+            .findUserLikesTuit(req.params.uid, req.params.tid)
+            .then((likes) => res.send(likes));
+
+    /**
+     * @param {Request} req Represents request from client, including the
+     * path parameters uid and tid representing the user that is unliking
+     * the tuit and the tuit being unliked
+     * @param {Response} res Represents response to client, including status
+     * on whether deleting the like was successful or not
+     */
+    userTogglesTuitLikes = async (req: any, res: any) => {
+        const uid = req.params.uid;
+        const tid = req.params.tid;
+        const profile = req.session['profile'];
+        const userId = uid === "me" && profile ?
+            profile._id : uid;
+        try {
+            const userAlreadyLikedTuit = await this.likeDao
+                .findUserLikesTuit(userId, tid);
+            const howManyLikedTuit = await this.likeDao
+                .countHowManyLikedTuit(tid);
+            let tuit = await this.tuitDao.findTuitById(tid);
+            if (userAlreadyLikedTuit) {
+                await this.likeDao.userUnlikesTuit(userId, tid);
+                tuit.stats.likes = howManyLikedTuit - 1;
+            } else {
+                await this.likeDao.userLikesTuit(userId, tid);
+                tuit.stats.likes = howManyLikedTuit + 1;
+            };
+            await this.tuitDao.updateLikes(tid, tuit.stats);
+            res.sendStatus(200);
+        } catch (e) {
+            res.sendStatus(404);
+        }
+    }
+
 }

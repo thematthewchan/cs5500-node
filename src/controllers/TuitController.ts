@@ -63,9 +63,15 @@ export default class TuitController implements TuitControllerI {
      * @param {Response} res Represents response to client, including the
      * body formatted as JSON arrays containing the tuit objects
      */
-    findTuitsByUser = (req: Request, res: Response) =>
-        this.tuitDao.findTuitsByUser(req.params.uid)
+    findTuitsByUser = (req: any, res: any) => {
+        let userId = req.params.uid === "me"
+            && req.session['profile'] ?
+            req.session['profile']._id :
+            req.params.uid;
+
+        this.tuitDao.findTuitsByUser(userId)
             .then(tuits => res.json(tuits));
+    }
 
     /**
      * @param {Request} req Represents request from client, including body
@@ -78,6 +84,25 @@ export default class TuitController implements TuitControllerI {
     createTuit = (req: Request, res: Response) =>
         this.tuitDao.createTuit(req.body)
             .then(tuit => res.json(tuit));
+
+    /**
+     * @param {Request} req Represents request from client, including body
+     * containing the JSON object for the new tuit to be inserted in the
+     * database
+     * @param {Response} res Represents response to client, including the
+     * body formatted as JSON containing the new tuit that was inserted in the
+     * database
+     */
+    createTuitByUser = (req: any, res: any) => {
+        let userId = req.params.uid === "me"
+            && req.session['profile'] ?
+            req.session['profile']._id :
+            req.params.uid;
+
+        this.tuitDao.createTuitByUser(userId, req.body)
+            .then(tuit => res.json(tuit));
+    }
+
 
     /**
      * @param {Request} req Represents request from client, including path
@@ -98,4 +123,15 @@ export default class TuitController implements TuitControllerI {
     updateTuit = (req: Request, res: Response) =>
         this.tuitDao.updateTuit(req.params.tid, req.body)
             .then(status => res.json(status));
+
+    /**
+     * @param {Request} req Represents request from client, including path
+     * parameter tid identifying the primary key of the tuit to be modified
+     * @param {Response} res Represents response to client, including status
+     * on whether updating a tuit was successful or not
+     */
+    updateLikes = (req: Request, res: Response) =>
+        this.tuitDao
+            .updateLikes(req.params.tid, req.body)
+            .then((status) => res.json(status));
 }
