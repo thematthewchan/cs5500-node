@@ -44,17 +44,6 @@ export default class LikeController implements LikeControllerI {
     }
 
     /**
-     * Retrieves all tuits liked by a user from the database
-     * @param {Request} req Represents request from client, including the path
-     * parameter uid representing the user liked the tuits
-     * @param {Response} res Represents response to client, including the
-     * body formatted as JSON arrays containing the tuit objects that were liked
-     */
-    findAllTuitsLikedByUser = (req: Request, res: Response) =>
-        this.likeDao.findAllTuitsLikedByUser(req.params.uid)
-            .then(likes => res.json(likes));
-
-    /**
      * Retrieves all users that liked a tuit from the database
      * @param {Request} req Represents request from client, including the path
      * parameter tid representing the liked tuit
@@ -64,6 +53,24 @@ export default class LikeController implements LikeControllerI {
     findAllUsersThatLikedTuit = (req: Request, res: Response) =>
         this.likeDao.findAllUsersThatLikedTuit(req.params.tid)
             .then(likes => res.json(likes));
+
+    /**
+     * Retrieves all tuits liked by a user from the database
+     * @param {Request} req Represents request from client, including the path
+     * parameter uid representing the user liked the tuits
+     * @param {Response} res Represents response to client, including the
+     * body formatted as JSON arrays containing the tuit objects that were liked
+     */
+    findAllTuitsLikedByUser = (req: Request, res: Response) =>
+        this.likeDao.findAllTuitsLikedByUser(req.params.uid)
+            .then(likes => {
+                const likesNonNullTuits =
+                    likes.filter(like => like.tuit);
+                const tuitsFromLikes =
+                    likesNonNullTuits.map(like => like.tuit);
+                res.json(tuitsFromLikes);
+            }
+            );
 
     /**
      * @param {Request} req Represents request from client, including the
