@@ -63,7 +63,14 @@ export default class LikeController implements LikeControllerI {
      */
     findAllTuitsLikedByUser = (req: Request, res: Response) =>
         this.likeDao.findAllTuitsLikedByUser(req.params.uid)
-            .then(likes => res.json(likes));
+            .then(likes => {
+                const likesNonNullTuits =
+                    likes.filter(like => like.tuit);
+                const tuitsFromLikes =
+                    likesNonNullTuits.map(like => like.tuit);
+                res.json(tuitsFromLikes);
+            }
+            );
 
     /**
      * @param {Request} req Represents request from client, including the

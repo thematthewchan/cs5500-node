@@ -12,6 +12,6 @@ import Tuit from "./Tuit";
  * @property {User} likedBy User liking the tuit
  */
 export default class Like {
-  private tuit: Tuit | null = null;
+  public tuit: Tuit | null = null;
   private likedBy: User | null = null;
 }
