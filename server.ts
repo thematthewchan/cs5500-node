@@ -26,8 +26,7 @@ app.use(cors({
 app.use(express.json());
 
 let sess = {
-  // secret: process.env.SECRET,
-  secret: "REDCAT",
+  secret: process.env.SECRET,
   cookie: {
     secure: false
   }
